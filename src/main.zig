@@ -35,10 +35,10 @@ pub fn main() !void {
         return error.CSOpenFailed;
     }
 
-    const count = cs.cs_disasm(handle, CODE, CODE.len - 1, 0x1000, 0, @ptrCast(&insn));
+    const count = cs.cs_disasm(handle, CODE, CODE.len, 0x1000, 0, @ptrCast(&insn));
     if (count > 0) {
         for (0..count) |j| {
-            std.debug.print("0x{x}\t{s}\t{s}\n", .{ insn[j].address, insn[j].mnemonic, insn[j].op_str });
+            std.debug.print("{d}: {*}: 0x{x}\t{s}\t{s}\n", .{ j, &insn[j], insn[j].address, insn[j].mnemonic, insn[j].op_str });
         }
         cs.cs_free(insn, count);
     } else {

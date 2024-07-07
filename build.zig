@@ -10,7 +10,7 @@ pub fn build(b: *std.Build) void {
     });
 
     const exe = b.addExecutable(.{
-        .name = "capstone-test",
+        .name = "main",
         .root_source_file = b.path("src/main.zig"),
         .target = target,
         .optimize = optimize,
@@ -18,9 +18,9 @@ pub fn build(b: *std.Build) void {
     exe.linkLibC();
 
     const compiled_capstone = capstone.artifact("capstone");
+    exe.addIncludePath(compiled_capstone.getEmittedIncludeTree());
     exe.addLibraryPath(compiled_capstone.getEmittedBin().dirname());
     exe.linkSystemLibrary("capstone");
-    exe.addIncludePath(compiled_capstone.getEmittedIncludeTree());
 
     b.default_step.dependOn(capstone.builder.default_step);
 
@@ -34,4 +34,21 @@ pub fn build(b: *std.Build) void {
 
     const run_step = b.step("run", "Run the app");
     run_step.dependOn(&run_cmd.step);
+
+    const cs_bindings = b.dependency("capstone-bindings-zig", .{
+        .target = target,
+        .optimize = optimize,
+    });
+
+    const cs_test = b.addExecutable(.{
+        .name = "main2",
+        .root_source_file = b.path("src/main2.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
+    cs_test.root_module.addImport("capstone-z", cs_bindings.module("capstone-bindings-zig"));
+
+    b.default_step.dependOn(capstone.builder.default_step);
+
+    b.installArtifact(cs_test);
 }

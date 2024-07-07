@@ -7,6 +7,10 @@
             .url = "https://github.com/SoraTenshi/capstone-zig/archive/main.tar.gz",
             .hash = "12208568b851169beb416f4e1c6a302076487a9c41be676319df6c1aabb10dda8456",
         },
+        .@"capstone-bindings-zig" = .{
+            .url = "https://github.com/SoraTenshi/capstone-bindings-zig/archive/main.tar.gz",
+            .hash = "1220fca6172a656d9f636da5917a627e80540a63807efef0a8be40360a948e9b268e",
+        },
     },
     .paths = .{""},
 }
