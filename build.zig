@@ -7,9 +7,6 @@ pub fn build(b: *std.Build) void {
     const capstone = b.dependency("capstone", .{
         .target = target,
         .optimize = optimize,
-        .x86 = true,
-        .wasm = true,
-        .evm = true,
     });
 
     const cs_test = b.addExecutable(.{

@@ -4,12 +4,12 @@
 
     .dependencies = .{
         .capstone = .{
-            .url = "https://github.com/SoraTenshi/capstone-zig/archive/main.tar.gz",
-            .hash = "1220c76dfd839d7ac6ae03dfd88aca1c00314dc9417efe9964898af7db5548109aec",
+            .url = "git+https://github.com/allyourcodebase/capstone.git?ref=main#a9067fbeaf0049b812a249c237e62408c3fd3df7",
+            .hash = "122062cee55ea063b596d72f2d32fc3ab60551ffc1433533ab2d79f07062d4565720",
         },
         .@"capstone-bindings-zig" = .{
-            .url = "https://github.com/SoraTenshi/capstone-bindings-zig/archive/main.tar.gz",
-            .hash = "1220d8f14a9c1f580616d5dc19c007dae1fbdd8d230ad64d48c6aa499440456b4ad3",
+            .url = "git+https://github.com/soratenshi/capstone-bindings-zig.git?ref=main#3143299cefa35f214a5329cb02ef6c3fb8957aca",
+            .hash = "1220fda2130d0640b0b9a610cf9808bebaaa05900ea06ffeee5465ab73611665c574",
         },
     },
     .paths = .{""},
